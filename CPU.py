@@ -4,33 +4,26 @@ from numba import vectorize, cuda
 
 NUM_ELEMENTS = 16
 
-@vectorize(['int8(int8, int8)'], target='cuda')
 def Add(a, b):
     return a + b
 
-@vectorize(['int8(int8, int8)'], target='cuda')
 def Subtract(a, b):
     return a - b
 
-@vectorize(['int8(int8, int8)'], target='cuda')
 def Multiply(a, b):
     return a * b
 
-@vectorize(['int8(int8, int8)'], target='cuda')
 def Modulus(a, b):
     return a % b
 
 # TODO: Implement Caesar Cipher Encryption, Decryption, and Exhaustive
 """
-@vectorize(['int8(int8, int8)'], target='cuda')
 def Encrypt(a, b):
     return 
 
-@vectorize(['int8(int8, int8)'], target='cuda')
 def Decrypt(a, b):
     return 
 
-@vectorize(['int8(int8, int8)'], target='cuda')
 def Exhaust(a, b):
     return 
 

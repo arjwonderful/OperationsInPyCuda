@@ -1,7 +1,20 @@
+#!/usr/bin/env python3
+
+"""
+Alejandro Rubio
+EN606.617
+CPU.py
+"""
+
 import time
 import random
 
-NUM_ELEMENTS = 100000000
+NUM_ELEMENTS = 16
+
+"""
+The below functions execute vector addition, subtraction,
+multiplication, modulus, and Caesar Encryption/Decryption.
+"""
 
 def Add(a, b):
     c = []
@@ -31,27 +44,35 @@ def Modulus(a, b):
     return c
 
 def Encrypt(message, shift):
+    # apply shift and normalize to ASCII
     Encrypted = []
     for i in range(0,len(message)):
         Encrypted.append(((message[i]+shift) % 26) + 97)
     return Encrypted
 
 def Decrypt(message, shift):
+    # apply shift and normalize to ASCII
     Decrypted= []
     for i in range(0,len(message)):
         Decrypted.append(((message[i]-shift) % 26) + 97)
     return Decrypted
 
 def initialize_host_message(msg):
+    """
+    Initilizes array from string, tracking letters, capitalization
+    and punctuation.
+    """
     message = []
     punctuation = []
     upper_case = []
+
     for i in range(0,len(msg)):
         if msg[i].isalpha():
-            if msg[i].isupper():
+            if msg[i].isupper():#catch upper case
                upper_case.append(i)
+
             message.append((ord(msg[i].lower()) - 97) % 26)
-        else:
+        else:#catch punctuation
             punctuation.append((i, msg[i]))
 
     return message, punctuation, upper_case
@@ -66,6 +87,9 @@ def initialize_host_vectors():
 
 
 def print_output(add, sub, mult, mod):
+    """
+    Prints the output of the vector operations
+    """
     print("Vector Addition Output:\n", add)
     print("Vector subtraction Output:\n", sub)
     print("Vector Multiplication Output:\n", mult)
@@ -73,40 +97,54 @@ def print_output(add, sub, mult, mod):
     #print("Encrypted Message:\n",(encrypt))
 
 def print_caesar(encrypt, msg_len, puncutation, upper_case):
-    scale_back = 0
+    """
+    Prints Encrpyion/Decryption result restoring capitals and
+    punctuation.
+    """
+    scale_back = 0 #shift index with inserted punctuation
     for i in range(0, msg_len):
-        flag = 0
-        upper_flag = 0
+        punc_flag = 0 #track punctuation
+        upper_flag = 0 #track capitzaliztion
+
         for j in range(0, len(puncutation)):
-            if i == puncutation[j][0]:
+            if i == puncutation[j][0]: # if punctuation
                 print(puncutation[j][1], end='')
                 scale_back += 1
-                flag = 1
+                punc_flag = 1
                 break
-        if flag == 1:
+
+        if punc_flag == 1:
             continue
 
         for j in range(0, len(upper_case)):
-            if i == upper_case[j]:
+            if i == upper_case[j]:#if upper case
                 print(chr(encrypt[i - scale_back]).upper(), end='')
                 upper_flag = 1
                 break
-        if(upper_flag == 0):
-            print(chr(encrypt[i - scale_back]), end='')
-    print()
 
-if __name__ == '__main__':
+        if(upper_flag == 0):#if lower case
+            print(chr(encrypt[i - scale_back]), end='')
+
+    print() #newline
+
+def main():
+    """
+    Driver code for vector operations and 
+    performance metrics.
+    """
+
     msg_str = "Hello World!"
     shift = 6
 
     encr_str = "Nkrru Cuxrj!"
     dec_shift = 6
+
     # initialize host vectors
     A, B = initialize_host_vectors()
     message, punctuation, uppers = initialize_host_message(msg_str)
     encr_message, encr_punctuation, enc_uppers = initialize_host_message(encr_str)
 
-    # print input vectors
+    #print input vectors
     #print("Input A Vector:\n", A)
     #print("Input B Vector:\n", B)
 
@@ -128,4 +166,4 @@ if __name__ == '__main__':
     #print_output(add_output, sub_output, mult_output, mod_output)
     #print_caesar(encrypt_output, len(msg_str), punctuation, uppers)
     #print_caesar(decrypt_output, len(encr_str), encr_punctuation, enc_uppers)
-    print("Vector operations took {} seconds".format(performance_time))
+    print(f"Vector operations took {performance_time} seconds")

@@ -9,8 +9,6 @@ CPU.py
 import time
 import random
 
-NUM_ELEMENTS = 16
-
 """
 The below functions execute vector addition, subtraction,
 multiplication, modulus, and Caesar Encryption/Decryption.
@@ -77,7 +75,7 @@ def initialize_host_message(msg):
 
     return message, punctuation, upper_case
 
-def initialize_host_vectors():
+def initialize_host_vectors(NUM_ELEMENTS):
     B = []
     A = [x for x in range(NUM_ELEMENTS)]
     for i in range(0, NUM_ELEMENTS):
@@ -127,7 +125,7 @@ def print_caesar(encrypt, msg_len, puncutation, upper_case):
 
     print() #newline
 
-def main():
+def driver(NUM_ELEMENTS):
     """
     Driver code for vector operations and 
     performance metrics.
@@ -140,7 +138,7 @@ def main():
     dec_shift = 6
 
     # initialize host vectors
-    A, B = initialize_host_vectors()
+    A, B = initialize_host_vectors(NUM_ELEMENTS)
     message, punctuation, uppers = initialize_host_message(msg_str)
     encr_message, encr_punctuation, enc_uppers = initialize_host_message(encr_str)
 
@@ -166,4 +164,4 @@ def main():
     #print_output(add_output, sub_output, mult_output, mod_output)
     #print_caesar(encrypt_output, len(msg_str), punctuation, uppers)
     #print_caesar(decrypt_output, len(encr_str), encr_punctuation, enc_uppers)
-    print(f"Vector operations took {performance_time} seconds")
+    return performance_time

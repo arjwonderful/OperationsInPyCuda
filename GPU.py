@@ -10,7 +10,6 @@ import numpy as np
 import time
 from numba import vectorize, cuda
 
-NUM_ELEMENTS = 16
 
 """
 The below kernels execute vector addition, subtraction,
@@ -44,7 +43,7 @@ def Decrypt(message, shift):
     #apply shift and normalize to ASCII
     return (((message - shift) % 26) + 97)
 
-def initialize_host_vectors():
+def initialize_host_vectors(NUM_ELEMENTS):
     # A contains 0-NUM_ELEMETNS ascending
     A = [x for x in range(NUM_ELEMENTS)]
     A = np.array(A, dtype=np.int8)
@@ -116,7 +115,7 @@ def print_caesar(encrypt, msg_len, punctuation, upper_case):
 
     print()#newline
 
-def main():
+def driver(NUM_ELEMENTS):
     """
     Driver code for vector operations and 
     performance metrics.
@@ -128,7 +127,7 @@ def main():
     dec_shift = 6
 
     # initialize host vectors
-    A, B = initialize_host_vectors()
+    A, B = initialize_host_vectors(NUM_ELEMENTS)
     message, punctuation, uppers = initialize_host_message(msg_str)
     encr_message, encr_punctuation, enc_uppers = initialize_host_message(encr_str)
 
@@ -154,4 +153,4 @@ def main():
     #print_output(add_output, sub_output, mult_output, mod_output)
     #print_caesar(encrypt_output, len(msg_str), punctuation, uppers)
     #print_caesar(decrypt_output, len(encr_str), encr_punctuation, enc_uppers)
-    print(f"Vector operations took {performance_time} seconds")
+    return performance_time

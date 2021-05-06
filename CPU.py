@@ -15,31 +15,31 @@ multiplication, modulus, and Caesar Encryption/Decryption.
 """
 
 def Add(a, b):
-    c = []
+    c_add= []
     for i in range(0,len(a)):
-        c.append(a[i] + b[i])
-    return c
+        c_add.append(a[i] + b[i])
+    return c_add
 
 def Subtract(a, b):
-    c = []
+    c_sub = []
     for i in range(0,len(a)):
-        c.append(a[i] - b[i])
-    return c
+        c_sub.append(a[i] - b[i])
+    return c_sub
 
 def Multiply(a, b):
-    c = []
+    c_mult = []
     for i in range(0,len(a)):
-        c.append(a[i] * b[i])
-    return c
+        c_mult.append(a[i] * b[i])
+    return c_mult
 
 def Modulus(a, b):
-    c = []
+    c_mod = []
     for i in range(0,len(a)):
         if b[i] == 0:
-            c.append(0)
+            c_mod.append(0)
         else:
-            c.append(a[i] % b[i])
-    return c
+            c_mod.append(a[i] % b[i])
+    return c_mod
 
 def Encrypt(message, shift):
     # apply shift and normalize to ASCII
@@ -164,4 +164,13 @@ def driver(NUM_ELEMENTS):
     #print_output(add_output, sub_output, mult_output, mod_output)
     #print_caesar(encrypt_output, len(msg_str), punctuation, uppers)
     #print_caesar(decrypt_output, len(encr_str), encr_punctuation, enc_uppers)
+
+    del add_output
+    del sub_output
+    del mult_output
+    del encrypt_output
+    del decrypt_output
+    del A
+    del B
+
     return performance_time

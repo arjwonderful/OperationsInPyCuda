@@ -153,4 +153,12 @@ def driver(NUM_ELEMENTS):
     #print_output(add_output, sub_output, mult_output, mod_output)
     #print_caesar(encrypt_output, len(msg_str), punctuation, uppers)
     #print_caesar(decrypt_output, len(encr_str), encr_punctuation, enc_uppers)
+    del add_output
+    del sub_output
+    del mult_output
+    del encrypt_output
+    del decrypt_output
+    del A
+    del B
+
     return performance_time

@@ -143,13 +143,15 @@ def driver(NUM_ELEMENTS):
     encr_message, encr_punctuation, enc_uppers = initialize_host_message(encr_str)
 
     #print input vectors
-    #print("Input A Vector:\n", A)
-    #print("Input B Vector:\n", B)
-
+    '''
+    print("CPU Execution:")
+    print("Input A Vector:\n", A)
+    print("Input B Vector:\n", B)
+    '''
     # start timer
     start = time.time()
 
-    # call kernel functions
+    # call CPU functions
     add_output = Add(A, B)
     sub_output = Subtract(A, B)
     mult_output = Multiply(A, B)
@@ -161,16 +163,11 @@ def driver(NUM_ELEMENTS):
     performance_time = time.time() - start
 
     # print output
-    #print_output(add_output, sub_output, mult_output, mod_output)
-    #print_caesar(encrypt_output, len(msg_str), punctuation, uppers)
-    #print_caesar(decrypt_output, len(encr_str), encr_punctuation, enc_uppers)
-
-    del add_output
-    del sub_output
-    del mult_output
-    del encrypt_output
-    del decrypt_output
-    del A
-    del B
-
+    '''
+    print_output(add_output, sub_output, mult_output, mod_output)
+    print("Caesar Encryption: ",end='')
+    print_caesar(encrypt_output, len(msg_str), punctuation, uppers)
+    print("Caesar Decryption: ",end='')
+    print_caesar(decrypt_output, len(encr_str), encr_punctuation, enc_uppers)
+    '''
     return performance_time

@@ -2,7 +2,7 @@
 
 """
 Alejandro Rubio
-EN606.617
+EN605.617
 CPU.py
 """
 
@@ -162,12 +162,13 @@ def driver(NUM_ELEMENTS):
     # stop timer, record
     performance_time = time.time() - start
 
-    # print output
     '''
+    # print output
     print_output(add_output, sub_output, mult_output, mod_output)
     print("Caesar Encryption: ",end='')
     print_caesar(encrypt_output, len(msg_str), punctuation, uppers)
     print("Caesar Decryption: ",end='')
     print_caesar(decrypt_output, len(encr_str), encr_punctuation, enc_uppers)
     '''
+
     return performance_time
